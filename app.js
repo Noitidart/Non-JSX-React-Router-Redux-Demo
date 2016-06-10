@@ -1,5 +1,4 @@
-var BASE_PATH = '/';
-var BASE_PATH = '';
+var BASE_PATH = 'Non-JSX-React-Router-Redux-Demo/app.html';
 
 // ACTIONS
 const REPLACE_ALERT = 'REPLACE_ALERT';
