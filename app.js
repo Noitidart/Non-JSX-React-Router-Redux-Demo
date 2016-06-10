@@ -111,10 +111,10 @@ function init() {
 	ReactDOM.render(
 		React.createElement(ReactRedux.Provider, { store },
 			React.createElement(ReactRouter.Router, { history },
-				React.createElement(ReactRouter.Route, { path:BASE_PATH, component:App },
-					React.createElement(ReactRouter.Route, { path:'?contact', component:ContactPage }),
-					React.createElement(ReactRouter.Route, { path:'?about', component:AboutPage }),
+				React.createElement(ReactRouter.Route, { path:BASE_PATH + '?', component:App },
 					React.createElement(ReactRouter.IndexRoute, { component:IndexPage }),
+					React.createElement(ReactRouter.Route, { path:'contact', component:ContactPage }),
+					React.createElement(ReactRouter.Route, { path:'about', component:AboutPage }),
 					React.createElement(ReactRouter.Route, { path:'*', component:InvalidPage })
 				)
 			)
