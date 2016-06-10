@@ -1,4 +1,4 @@
-var BASE_PATH = 'app.html';
+var BASE_PATH = '/app.html';
 // var BASE_PATH = 'file:///C:/Users/Mercurius/Documents/GitHub/Non-JSX-React-Router-Redux-Demo/app.html';
 
 // ACTIONS
