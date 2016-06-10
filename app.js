@@ -1,4 +1,4 @@
-var BASE_PATH = 'http://noitidart.github.io/Non-JSX-React-Router-Redux-Demo/app.html';
+var BASE_PATH = 'Non-JSX-React-Router-Redux-Demo/app.html';
 // var BASE_PATH = 'file:///C:/Users/Mercurius/Documents/GitHub/Non-JSX-React-Router-Redux-Demo/app.html';
 
 // ACTIONS
@@ -115,8 +115,8 @@ function init() {
 				React.createElement(ReactRouter.Route, { path:BASE_PATH, component:App },
 					React.createElement(ReactRouter.Route, { path:BASE_PATH+'?contact', component:ContactPage }),
 					React.createElement(ReactRouter.Route, { path:BASE_PATH+'?about', component:AboutPage }),
-					React.createElement(ReactRouter.Route, { path:'*', component:InvalidPage })
-					// React.createElement(ReactRouter.IndexRoute, { component:IndexPage })
+					React.createElement(ReactRouter.Route, { path:'*', component:InvalidPage }),
+					React.createElement(ReactRouter.IndexRoute, { component:IndexPage })
 				)
 			)
 		),
