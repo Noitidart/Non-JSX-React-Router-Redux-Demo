@@ -1,3 +1,5 @@
+const BASE_PATH = 'http://noitidart.github.io/Non-JSX-React-Router-Redux-Demo/app.html'
+
 // ACTIONS
 const REPLACE_ALERT = 'REPLACE_ALERT';
 
@@ -49,15 +51,15 @@ var App = React.createClass({
 			'App',
 			React.createElement('div', { id:'nav', className:'nav' },
 				'Nav:',
-				React.createElement(ReactRouter.Link, { to:'./' },
+				React.createElement(ReactRouter.Link, { to:BASE_PATH },
 					'Index'
 				),
 				' | ',
-				React.createElement(ReactRouter.Link, { to:'./contact' },
+				React.createElement(ReactRouter.Link, { to:BASE_PATH + '?contact' },
 					'Recording'
 				),
 				' | ',
-				React.createElement(ReactRouter.Link, { to:'./about' },
+				React.createElement(ReactRouter.Link, { to:BASE_PATH + '?about' },
 					'About'
 				)
 			),
@@ -109,9 +111,9 @@ function init() {
 	ReactDOM.render(
 		React.createElement(ReactRedux.Provider, { store },
 			React.createElement(ReactRouter.Router, { history },
-				React.createElement(ReactRouter.Route, { path:'./', component:App },
-					React.createElement(ReactRouter.Route, { path:'contact', component:ContactPage }),
-					React.createElement(ReactRouter.Route, { path:'about', component:AboutPage }),
+				React.createElement(ReactRouter.Route, { path:BASE_PATH, component:App },
+					React.createElement(ReactRouter.Route, { path:BASE_PATH+'?contact', component:ContactPage }),
+					React.createElement(ReactRouter.Route, { path:BASE_PATH+'?'about', component:AboutPage }),
 					React.createElement(ReactRouter.Route, { path:'*', component:InvalidPage })
 					// React.createElement(ReactRouter.IndexRoute, { component:IndexPage })
 				)
