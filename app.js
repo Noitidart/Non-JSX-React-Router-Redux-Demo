@@ -1,4 +1,5 @@
 var BASE_PATH = 'Non-JSX-React-Router-Redux-Demo/app.html';
+var BASE_PATH = '/';
 
 // ACTIONS
 const REPLACE_ALERT = 'REPLACE_ALERT';
@@ -37,29 +38,30 @@ const app = Redux.combineReducers({
 // var middleware = ReactRouterRedux.routerMiddleware(ReactRouter.browserHistory);
 // var store = Redux.createStore(app, middleware);
 var store = Redux.createStore(app);
-const history = ReactRouterRedux.syncHistoryWithStore(ReactRouter.browserHistory, store);
+const history = ReactRouterRedux.syncHistoryWithStore(ReactRouter.hashHistory, store);
 
 var unsubscribe = store.subscribe(() => console.log(store.getState()) );
+history.listen(location => console.log('pathname:', location.pathname));
 
 // REACT COMPONENTS - PRESENTATIONAL
 var App = React.createClass({
 	render() {
 		var { children } = this.props;
-		console.log('children:', children);
+		console.log('this.props:', this.props);
 
 		return React.createElement('div', { id:'app', className:'app' },
 			'App',
 			React.createElement('div', { id:'nav', className:'nav' },
 				'Nav:',
-				React.createElement(ReactRouter.Link, { to:BASE_PATH },
+				React.createElement(ReactRouter.Link, { to:'/' },
 					'Index'
 				),
 				' | ',
-				React.createElement(ReactRouter.Link, { to:BASE_PATH + '?contact' },
+				React.createElement(ReactRouter.Link, { to:'/contact' },
 					'Recording'
 				),
 				' | ',
-				React.createElement(ReactRouter.Link, { to:BASE_PATH + '?about' },
+				React.createElement(ReactRouter.Link, { to:'/about' },
 					'About'
 				)
 			),
@@ -96,6 +98,7 @@ var IndexPage = React.createClass({
 
 var InvalidPage = React.createClass({
 	render() {
+		console.log('InvalidPage props:', this.props);
 		return React.createElement('div', null,
 			'INVALID'
 		);
@@ -111,7 +114,7 @@ function init() {
 	ReactDOM.render(
 		React.createElement(ReactRedux.Provider, { store },
 			React.createElement(ReactRouter.Router, { history },
-				React.createElement(ReactRouter.Route, { path:BASE_PATH + '?', component:App },
+				React.createElement(ReactRouter.Route, { path:'/', component:App },
 					React.createElement(ReactRouter.IndexRoute, { component:IndexPage }),
 					React.createElement(ReactRouter.Route, { path:'contact', component:ContactPage }),
 					React.createElement(ReactRouter.Route, { path:'about', component:AboutPage }),
