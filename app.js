@@ -1,4 +1,4 @@
-var BASE_PATH = 'Non-JSX-React-Router-Redux-Demo/app.html';
+var BASE_PATH = '/';
 
 // ACTIONS
 const REPLACE_ALERT = 'REPLACE_ALERT';
@@ -29,15 +29,13 @@ function alert(state='', action) {
 
 
 const app = Redux.combineReducers({
-	alert,
-	routing: ReactRouterRedux.routerReducer
+	alert
 });
 
 // STORE
 // var middleware = ReactRouterRedux.routerMiddleware(ReactRouter.browserHistory);
 // var store = Redux.createStore(app, middleware);
 var store = Redux.createStore(app);
-const history = ReactRouterRedux.syncHistoryWithStore(ReactRouter.browserHistory, store);
 
 var unsubscribe = store.subscribe(() => console.log(store.getState()) );
 
@@ -51,15 +49,15 @@ var App = React.createClass({
 			'App',
 			React.createElement('div', { id:'nav', className:'nav' },
 				'Nav:',
-				React.createElement(ReactRouter.Link, { to:BASE_PATH },
+				React.createElement(ReactRouter.Link, { to:'file:///C:/Users/Mercurius/Documents/GitHub/Non-JSX-React-Router-Redux-Demo/app.html' },
 					'Index'
 				),
 				' | ',
-				React.createElement(ReactRouter.Link, { to:BASE_PATH + '?contact' },
+				React.createElement(ReactRouter.Link, { to:'file:///C:/Users/Mercurius/Documents/GitHub/Non-JSX-React-Router-Redux-Demo/app.html?contact' },
 					'Recording'
 				),
 				' | ',
-				React.createElement(ReactRouter.Link, { to:BASE_PATH + '?about' },
+				React.createElement(ReactRouter.Link, { to:'file:///C:/Users/Mercurius/Documents/GitHub/Non-JSX-React-Router-Redux-Demo/app.html?about' },
 					'About'
 				)
 			),
@@ -108,12 +106,15 @@ var InvalidPage = React.createClass({
 
 function init() {
 	console.log('rendering');
+	var myhistory = History.useBasename(ReactRouter.useRouterHistory(History.createHistory))({
+			basename: 'file:///C:/Users/Mercurius/Documents/GitHub/Non-JSX-React-Router-Redux-Demo/app.html'
+	});
 	ReactDOM.render(
 		React.createElement(ReactRedux.Provider, { store },
-			React.createElement(ReactRouter.Router, { history },
-				React.createElement(ReactRouter.Route, { path:BASE_PATH + '?', component:App },
+			React.createElement(ReactRouter.Router, { history:ReactRouter.browserHistory },
+				React.createElement(ReactRouter.Route, { path:BASE_PATH, component:App },
 					React.createElement(ReactRouter.IndexRoute, { component:IndexPage }),
-					React.createElement(ReactRouter.Route, { path:'contact', component:ContactPage }),
+					React.createElement(ReactRouter.Route, { path:'/C:/Users/Mercurius/Documents/GitHub/Non-JSX-React-Router-Redux-Demo/app.html?contact', component:ContactPage }),
 					React.createElement(ReactRouter.Route, { path:'about', component:AboutPage }),
 					React.createElement(ReactRouter.Route, { path:'*', component:InvalidPage })
 				)
