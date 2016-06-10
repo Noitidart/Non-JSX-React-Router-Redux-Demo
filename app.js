@@ -1,4 +1,4 @@
-var BASE_PATH = 'Non-JSX-React-Router-Redux-Demo/app.html';
+var BASE_PATH = '/';
 var BASE_PATH = '';
 
 // ACTIONS
